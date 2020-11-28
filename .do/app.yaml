@@ -11,6 +11,12 @@ services:
   - key: DJANGO_ALLOWED_HOSTS
     value: .ondigitalocean.app
     scope: RUN_TIME
+  - key: DJANGO_SETTINGS_MODULE
+    value: 'core.settings.prod'
+    scope: RUN_TIME
+  - key: DATABASE_URL
+    value: 'sqlite://:memory:'
+    scope: RUN_TIME
   instance_size_slug: basic-xxs
   instance_count: 1
   http_port: 8080
