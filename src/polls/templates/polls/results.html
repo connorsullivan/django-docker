@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<h1>{{ question.question_text }}</h1>
+
+<table class="my-4">
+    <tr>
+        <th class="pr-5">Choice</th>
+        <th class="pr-5">Votes</th>
+    </tr>
+
+    {% for choice in question.choices.all %}
+    <tr>
+        <td class="pr-5">{{ choice.label }}</td>
+        <td class="pr-5">{{ choice.votes }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="{% url 'polls:index' %}">Vote again?</a>
+
+{% endblock %}

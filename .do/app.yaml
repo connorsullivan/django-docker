@@ -1,0 +1,20 @@
+name: docker-django
+
+services:
+- name: web
+  github:
+    repo: connorsullivan/docker-django
+    branch: main
+    deploy_on_push: true
+  dockerfile_path: Dockerfile
+  envs:
+  - key: DJANGO_ALLOWED_HOSTS
+    value: .ondigitalocean.app
+    scope: RUN_TIME
+  instance_size_slug: basic-xxs
+  instance_count: 1
+  http_port: 8080
+  routes:
+  - path: /
+
+region: nyc
