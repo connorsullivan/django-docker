@@ -1,9 +1,9 @@
-name: docker-django
+name: django-docker
 
 services:
 - name: web
   github:
-    repo: connorsullivan/docker-django
+    repo: connorsullivan/django-docker
     branch: main
     deploy_on_push: true
   dockerfile_path: Dockerfile
