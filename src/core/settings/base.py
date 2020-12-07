@@ -6,23 +6,14 @@ import dj_database_url
 from django.core.management.utils import get_random_secret_key
 
 
-# A list of strings representing the host/domain names that this Django site can serve.
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Expects the DATABASE_URL environment variable to be set
-DATABASES = { 'default': dj_database_url.config(conn_max_age=600) }
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DJANGO_DEBUG', False)
-
-# Specify internal IPs for django-debug-toolbar
-INTERNAL_IPS = ['localhost']
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', get_random_secret_key())
+
+# Expects the DATABASE_URL environment variable to be set
+DATABASES = { 'default': dj_database_url.config(conn_max_age=600) }
 
 
 # Application definition
