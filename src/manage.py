@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 def main():
     '''Run administrative tasks.'''
 
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings.production')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings.prod')
 
     # Load environment variables from python-dotenv
     load_dotenv(override=True)

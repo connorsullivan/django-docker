@@ -1,8 +1,10 @@
 django
+
 psycopg2
 dj-database-url
+
 flake8
 python-dotenv
-gunicorn
+
 waitress
 whitenoise

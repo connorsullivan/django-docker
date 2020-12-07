@@ -1,21 +1,25 @@
-"""
-Django settings for the project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/3.1/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/3.1/ref/settings/
-"""
-
 import os
 from pathlib import Path
+
+import dj_database_url
 
 from django.core.management.utils import get_random_secret_key
 
 
+# A list of strings representing the host/domain names that this Django site can serve.
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+# Expects the DATABASE_URL environment variable to be set
+DATABASES = { 'default': dj_database_url.config(conn_max_age=600) }
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.getenv('DJANGO_DEBUG', False)
+
+# Specify internal IPs for django-debug-toolbar
+INTERNAL_IPS = ['localhost']
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', get_random_secret_key())
@@ -24,6 +28,8 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', get_random_secret_key())
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
+
     'polls.apps.PollsConfig',
 
     'django.contrib.admin',
@@ -100,3 +106,21 @@ STATICFILES_DIRS = []
 
 # The file storage engine to use when collecting static files with the collectstatic management command.
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+# Logging
+# https://docs.djangoproject.com/en/3.1/topics/logging/
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+}
