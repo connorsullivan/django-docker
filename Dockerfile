@@ -4,10 +4,13 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-RUN pip install -r /app/requirements.txt
+RUN pip install --upgrade pip && \
+    pip install -r /app/requirements.txt
 
-COPY src/ .
+COPY django/ .
 
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --no-input
 
-CMD ["waitress-serve", "core.wsgi:application"]
+COPY entrypoint.sh .
+
+ENTRYPOINT ["sh", "entrypoint.sh"]

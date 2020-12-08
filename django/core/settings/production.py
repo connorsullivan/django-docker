@@ -4,9 +4,6 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# A list of strings representing the host/domain names that this Django site can serve.
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
-
 
 # Security
 # https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
