@@ -11,6 +11,7 @@ services:
       - pgdata:/var/lib/postgresql/data
     networks:
       - django
+    restart: always
 
   web:
     build: .
@@ -22,6 +23,7 @@ services:
       - db
     networks:
       - django
+    restart: always
 
   www:
     build: ./nginx
@@ -31,6 +33,7 @@ services:
       - web
     networks:
       - django
+    restart: always
 
 networks:
   django:
