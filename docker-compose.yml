@@ -33,6 +33,7 @@ services:
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - /var/lib/letsencrypt:/var/lib/letsencrypt
+      - /var/www/html:/var/www/html
     depends_on:
       - web
     networks:
